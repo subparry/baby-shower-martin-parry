@@ -13,33 +13,52 @@
     <h4><span class="glyphicon glyphicon-heart"></span> <%= notice %></h4>
   </div>
   <% end %>
+  <% if @guest.errors.any? %>
+  <div class="container alert alert-success">
+    <h4><span class="glyphicon glyphicon-remove"></span> <%= @guest.errors.full_messages.first %></h4>
+  </div>
+  <% end %>
+
   <% if session[:user_id] %>
   <div class="gift-list text-center well">
     <h1>Sugerencia de regalos!</h1>
     <h5>Por si no sabe qué traer o no quiere traer algo repetido</h5>
+    <%= link_to 'Ver todos los regalos', root_path(my_id: nil), class: 'btn btn-primary' %>
+    <%= link_to 'Ver mis regalos', root_path(my_id: session[:user_id]), class: 'btn btn-success' %>
     <%= link_to 'Terminar sesion', destroy_session_path(session[:id]), class: 'btn btn-danger' %>
   </div>
   <div>
       <% @gifts.each do |gift| %>
-        <div class="well gifts <%= taken_class(gift) %>">
+        <div class="well gifts">
           <div class="col-md-6">
           <%= gift.name %>
           </div>
           <div class="col-md-6 details">
           <%= available_in_text(gift) %>
           <%= link_to 'Yo lo regalo!', take_gift_path(id: gift.id), class: 'btn btn-success', method: :post unless gift.taken %>
+          <% if gift.taken && gift.guest_id == session[:user_id] %>
+          <%= link_to 'Me arrepentí!', regret_gift_path(id: gift.id), class: 'btn btn-danger' %>
+          <% end %>
           </div>
         </div>
       <% end %>
   </div>
   <% else %>
-  <div class="registro text-center">
-    <h2>Por favor ingrese su nombre:</h2>
+  <div class="col-md-6 registro text-center">
+    <h2>Por favor ingrese su nombre para registrarse:</h2>
     <%= form_with model: @guest do |form| %>
       <%= form.label :name, 'Nombre' %>
       <%= form.text_field :name %>
       <%= form.submit 'Entrar', class: 'btn btn-primary' %>
     <% end %>
   </div>
+  <div class="col-md-6 registro text-center">
+    <h2>Si ya registró su nombre ingréselo aqui para volver a entrar</h2>
+    <%= form_tag new_session_path, method: :get do %>
+      <%= text_field_tag :name %>
+      <%= submit_tag 'Entrar', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
   <% end %>
-</div>
+
+  </div>

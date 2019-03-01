@@ -5,9 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Gift.all.each do |gift|
-  gift.destroy
-end
 
 Gift.create(name: 'Pañales Pampers desechables (RN)')
 Gift.create(name: 'Pañales Pampers desechables (RN)')

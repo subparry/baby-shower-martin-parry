@@ -6,10 +6,4 @@ module ApplicationHelper
       'Disponible!'
     end
   end
-
-  def taken_class(gift)
-    if gift.taken
-      'taken'
-    end
-  end
 end
