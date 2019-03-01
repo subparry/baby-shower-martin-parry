@@ -8,6 +8,9 @@
 Gift.all.each do |gift|
   gift.destroy
 end
+Guest.all.each do |guest|
+  guest.destroy
+end
 
 Gift.create(name: 'Pañales Pampers desechables (RN)')
 Gift.create(name: 'Pañales Pampers desechables (RN)')
