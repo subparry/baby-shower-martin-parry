@@ -8,7 +8,7 @@ class GuestsController < ApplicationController
     elsif session[:user_id]
       @gifts = Guest.find(session[:user_id]).gifts
     end
-    @current = if session[:user_id]
+    @current = unless session[:user_id].nil?
                  Guest.find(session[:user_id])
                else
                  nil
