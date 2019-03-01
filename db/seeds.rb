@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Gift.all.each do |gift|
+  gift.destroy
+end
 
 Gift.create(name: 'Pañales Pampers desechables (RN)')
 Gift.create(name: 'Pañales Pampers desechables (RN)')
@@ -39,7 +42,10 @@ Gift.create(name: 'Talco bebé')
 Gift.create(name: 'Shampoo bebé')
 Gift.create(name: 'Mordedor')
 Gift.create(name: 'Termómetro bebé')
-Gift.create(name: 'Mamadera')
+Gift.create(name: 'Mamadera de vidrio 60ml flujo inicial')
+Gift.create(name: 'Mamadera de vidrio 125ml flujo lento')
+Gift.create(name: 'Mamadera de vidrio o polipropileno, entre 150ml y 260ml flujo medio')
+Gift.create(name: 'Mamadera de vidrio o polipropileno, más de 260ml flujo rápido')
 Gift.create(name: 'Baberos o bandanas')
 Gift.create(name: 'Baberos o bandanas')
 Gift.create(name: 'Baberos o bandanas')
