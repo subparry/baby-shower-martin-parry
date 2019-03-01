@@ -1,7 +1,9 @@
 class GuestsController < ApplicationController
   def index
     @guest = Guest.new
-    if params[:my_id].nil?
+    if ActiveModel::Type::Boolean.new.cast(params[:available]) == true
+      @gifts = Gift.where(taken: false)
+    elsif params[:my_id].nil?
       @gifts = Gift.all
     else
       @gifts = Guest.find(session[:user_id]).gifts
@@ -62,6 +64,6 @@ class GuestsController < ApplicationController
   private
 
   def guest_params
-    params.require(:guest).permit(:name)
+    params.require(:guest).permit(:name, :available)
   end
 end
