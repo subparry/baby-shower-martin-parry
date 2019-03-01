@@ -20,7 +20,7 @@
     </div>
   <% end %>
 
-  <% if session[:user_id] %>
+  <% unless session[:user_id].nil? %>
   <div class="alert alert-info" role="alert">
     Registrado como: <%= @current.name.capitalize %>
   </div>

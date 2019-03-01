@@ -5,7 +5,7 @@ class GuestsController < ApplicationController
       @gifts = Gift.where(taken: false)
     elsif params[:my_id].nil?
       @gifts = Gift.all
-    else
+    elsif session[:user_id]
       @gifts = Guest.find(session[:user_id]).gifts
     end
     @current = if session[:user_id]
