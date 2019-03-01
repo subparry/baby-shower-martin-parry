@@ -37,6 +37,11 @@
    background-color: rgba(64, 148, 157, 0.4);
  }
 
+ .color-mask h3 strong {
+   text-transform: uppercase;
+   text-decoration: underline;
+ }
+
 .gift-list {
   margin-bottom: 30px;
 }

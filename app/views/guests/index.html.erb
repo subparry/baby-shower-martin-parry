@@ -4,7 +4,7 @@
       <h1>¡Bienvenido Martín!</h1>
       <h2>Te invitamos a celebrar la llegada de nuestro primer hijo:</h2>
       <h1><strong>Martín Alejandro Parry Vargas</strong></h1>
-      <h3>Te estaremos esperando en:</h3>
+      <h3>Te estaremos esperando el <strong>15 de Marzo a las 19:00 Hrs.</strong> en:</h3>
       <h4>Amapolas 5565, Ñuñoa</h4>
       <h4>Salón de eventos</h4>
     </div>
@@ -21,9 +21,13 @@
   <% end %>
 
   <% if session[:user_id] %>
+  <div class="alert alert-info" role="alert">
+    Registrado como: <%= @current.name.capitalize %>
+  </div>
+
   <div class="gift-list text-center well">
     <h1>Sugerencia de regalos!</h1>
-    <h4>Si quieres traer un regalito para Martín, te sugerimos algo de la lista</h4>
+    <h4>Si quieres traer un regalito para Martín, te sugerimos algo de la lista o lo que tú quieras</h4>
 
     <%= link_to 'Ver todos los regalos', root_path(my_id: nil), class: 'btn btn-primary' %>
     <%= link_to 'Ver regalos disponibles', root_path(available: true), class: 'btn btn-warning' %>
