@@ -1,11 +1,11 @@
 <div class="container">
   <div class="jumbotron">
     <div class="color-mask">
-      <h1>Bienvenido Martín!</h1>
-      <h2>Te invitamos a celebrar la llegada de nuestro hijito:</h2>
+      <h1>¡Bienvenido Martín!</h1>
+      <h2>Te invitamos a celebrar la llegada de nuestro primer hijo:</h2>
       <h1><strong>Martín Alejandro Parry Vargas</strong></h1>
       <h3>Te estaremos esperando en:</h3>
-      <h4>Av. Príncipe de Gales 7509, depto 401, La Reina</h4>
+      <h4>DIRECCIÓN POR CONFIRMAR!</h4>
     </div>
   </div>
   <% if flash[:notice] %>
@@ -13,14 +13,15 @@
     <h4><span class="glyphicon glyphicon-heart"></span> <%= notice %></h4>
   </div>
   <% end %>
-  <div class="gift-list text-center">
+  <% if session[:user_id] %>
+  <div class="gift-list text-center well">
     <h1>Sugerencia de regalos!</h1>
     <h5>Por si no sabe qué traer o no quiere traer algo repetido</h5>
+    <%= link_to 'Terminar sesion', destroy_session_path(session[:id]), class: 'btn btn-danger' %>
   </div>
   <div>
-    <ul>
       <% @gifts.each do |gift| %>
-        <li class="well <%= taken_class(gift) %>">
+        <div class="well gifts <%= taken_class(gift) %>">
           <div class="col-md-6">
           <%= gift.name %>
           </div>
@@ -28,8 +29,17 @@
           <%= available_in_text(gift) %>
           <%= link_to 'Yo lo regalo!', take_gift_path(id: gift.id), class: 'btn btn-success', method: :post unless gift.taken %>
           </div>
-        </li>
+        </div>
       <% end %>
-    </ul>
   </div>
+  <% else %>
+  <div class="registro text-center">
+    <h2>Por favor ingrese su nombre:</h2>
+    <%= form_with model: @guest do |form| %>
+      <%= form.label :name, 'Nombre' %>
+      <%= form.text_field :name %>
+      <%= form.submit 'Entrar', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <% end %>
 </div>

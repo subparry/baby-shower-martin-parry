@@ -33,14 +33,15 @@
    text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5, -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
    text-align: center;
    height: 100%;
-   background-color: rgba(64, 148, 157, 0.6);
+   background-color: rgba(64, 148, 157, 0.4);
  }
 
 .gift-list {
   margin-bottom: 30px;
 }
 
-li.well {
+.gifts {
+  display: flex;
   color: rgb(3, 0, 154);
   font-weight: bold;
   font-size: 2rem;
