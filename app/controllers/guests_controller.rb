@@ -1,11 +1,14 @@
 class GuestsController < ApplicationController
   def index
+    if session[:user_id].present?
+      reset_session
+    end
     @guest = Guest.new
     if ActiveModel::Type::Boolean.new.cast(params[:available]) == true
       @gifts = Gift.where(taken: false)
     elsif params[:my_id].nil?
       @gifts = Gift.all
-    elsif session[:user_id]
+    elsif session[:user_id].present?
       @gifts = Guest.find(session[:user_id]).gifts
     end
     @current = unless session[:user_id].nil?
